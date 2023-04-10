@@ -7,7 +7,7 @@
     <div class="Stories-items">
       <div class="Stories-item">
         <div class="Store-items-box">
-          <img src="https//arepa.s3.amazonaws.com/oscar.png" alt="">
+          <img src="https://arepa.s3.amazonaws.com/oscar.png" alt="">
         </div>
         <h2>
           Leonardo Guilarte
