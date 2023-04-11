@@ -1,4 +1,5 @@
 <script>
+  // export let comments = [];
 </script>
 
 <div class="Comments">

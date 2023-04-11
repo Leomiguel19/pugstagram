@@ -1,26 +1,32 @@
 <script>
-  import { onMount } from "svelte";
+  // import { onMount } from "svelte";
   import Header from "../components/Header.svelte";
   import Main from "../components/Main.svelte";
   import Sidebar from "../components/Sidebar.svelte";
   import TimeLine from "../components/TimeLine.svelte";
 
-  let data = {};
+  let info = [];
   const API = "https://kittygram-api.vercel.app/";
 
-  onMount(async () => {
-    const response = await fetch(API);
-    data = await response.json();
-    console.log('data');
-    console.log(data);
-  });
+  const getData = () => {
+    return fetch(API)
+      .then(response => response.json())
+      // .then(data => info = data);
+  }
+
 </script>
 
 <Header />
 <Main>
-  <TimeLine posts={data.posts}/>
-  <Sidebar {...data.user.name} {...data.user.nickname} />
-</Main>
+  {#await getData()}
+    <h2>Loading...</h2>
+  {:then info}
+    <TimeLine posts={info.posts}/>
+    <Sidebar {...info.user.name} {...info.user.nickname} />
+  {:catch error}
+    {error}
+  {/await}
+</Main> 
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
